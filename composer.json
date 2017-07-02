@@ -1,0 +1,18 @@
+{
+    "name": "wilterson/gerenciador-financeiro",
+    "description": "Gerenciador Financeiro, desenvolvido em PHP.",
+    "authors": [
+        {
+            "name": "Wilterson Garcia",
+            "email": "wiltersongarcia@gmail.com"
+        }
+    ],
+    "require": {
+        "robmorgan/phinx": "0.8.1"
+    },
+    "autoload": {
+        "psr-4":{
+            "GENFin\\": "src/"
+        }
+    }
+}
