@@ -14,5 +14,8 @@
         "psr-4":{
             "GENFin\\": "src/"
         }
+    },
+    "require-dev": {
+        "fzaninotto/faker": "1.6.0"
     }
 }
