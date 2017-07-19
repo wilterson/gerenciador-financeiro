@@ -10,6 +10,7 @@ use GENFin\Plugins\RoutePlugin;
 use GENFin\ServiceContainer;
 use GENFin\Application;
 use Psr\Http\Message\RequestInterface;
+use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -25,10 +26,9 @@ $app->get('/', function (RequestInterface $request){
 });
 
 $app->get('/home/{name}', function (ServerRequest $request){
-    echo "Home";
-    echo "<br/>";
-    echo $request->getAttribute('name');
-    echo "<br/>";
+    $response = new Response();
+    $response->getBody()->write("response emitter");
+    return $response;
 });
 
 $app->start();
