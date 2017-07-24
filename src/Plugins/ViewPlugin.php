@@ -10,6 +10,7 @@ namespace GENFin\Plugins;
 
 
 use GENFin\ServiceContainerInterface;
+use GENFin\View\ViewRenderer;
 use Psr\Container\ContainerInterface;
 
 class ViewPlugin implements PluginInterface
@@ -20,6 +21,11 @@ class ViewPlugin implements PluginInterface
             $loader = new \Twig_Loader_Filesystem(__DIR__.'/../../templates');
             $twig = new \Twig_Environment($loader);
             return $twig;
+        });
+
+        $container->addLazy('view.renderer', function (ContainerInterface $container){
+            $twigEnvironment = $container->get('twig');
+            return new ViewRenderer($twigEnvironment);
         });
     }
 }

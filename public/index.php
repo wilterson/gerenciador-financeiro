@@ -7,6 +7,7 @@
  */
 
 use GENFin\Plugins\RoutePlugin;
+use GENFin\Plugins\ViewPlugin;
 use GENFin\ServiceContainer;
 use GENFin\Application;
 use Psr\Http\Message\RequestInterface;
@@ -19,10 +20,11 @@ $serviceContainer = new ServiceContainer();
 $app = new Application($serviceContainer);
 
 $app->plugin(new RoutePlugin());
+$app->plugin(new ViewPlugin());
 
-$app->get('/', function (RequestInterface $request){
-    var_dump($request->getUri());die();
-    echo "Hello World!";
+$app->get('/', function (RequestInterface $request) use ($app){
+    $view = $app->service('view.renderer');
+    return $view->render('test.html.twig', ['name' => '']);
 });
 
 $app->get('/home/{name}', function (ServerRequest $request){
